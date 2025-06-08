@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Blast Folders</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    h2 { margin-top: 2em; }
+    ul { list-style: none; padding-left: 0; }
+    li { margin-bottom: 0.5em; }
+    .folder { font-weight: bold; margin-top: 1em; }
+    .file-link { margin-left: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Email Blast Folders</h1>
+  <h2>Headers</h2>
+  <div id="headers"></div>
+  <h2>Body</h2>
+  <div id="body"></div>
+  <script>
+    fetch('folders.json')
+      .then(res => res.json())
+      .then(data => {
+        function renderSection(sectionId, folders, basePath) {
+          const container = document.getElementById(sectionId);
+          for (const folder in folders) {
+            const folderDiv = document.createElement('div');
+            folderDiv.className = 'folder';
+            folderDiv.textContent = folder;
+            container.appendChild(folderDiv);
+            const ul = document.createElement('ul');
+            folders[folder].forEach(file => {
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              let filePath = `${basePath}/${folder}/${file}`;
+              a.href = filePath;
+              a.textContent = file;
+              a.className = 'file-link';
+              a.target = '_blank';
+              li.appendChild(a);
+              ul.appendChild(li);
+            });
+            container.appendChild(ul);
+          }
+        }
+        renderSection('headers', data.headers, 'headers');
+        renderSection('body', data.body, 'body');
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "headers": {
+    "carluxFm": ["june25.png"],
+    "carluxFtl": ["june25.png"],
+    "cityMotorGroup": ["june25.png"],
+    "eastchester": ["june25.png"],
+    "lemansCars": ["june25.png"],
+    "nsKia": ["june25.png"],
+    "nsMitsu": ["june25.png"],
+    "silverline": ["june25.png"],
+    "ssMitsu": ["june25.png"],
+    "turnAutoMall": ["june25.png"],
+    "yonkers": ["june25.png"]
+  },
+  "body": {
+    "carluxFm": ["june25.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"],
+    "carluxFtl": ["june25.png", "june25/6.jpg", "june25/5.jpg", "june25/4.jpg", "june25/3.jpg", "june25/2.jpg", "june25/1.jpg"],
+    "cityMotorGroup": ["june25.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"],
+    "eastchester": ["june25.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"],
+    "lemansCars": ["june25.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"],
+    "nsKia": ["june25.png", "june25/15.png", "june25/14.png", "june25/13.png", "june25/12.png", "june25/11.png", "june25/10.png", "june25/9.png", "june25/8.png", "june25/7.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"],
+    "nsMitsu": ["june25.png", "june25/Outlander Phev.png", "june25/Outlander.png", "june25/Eclipse Cross.png", "june25/9.png", "june25/8.png", "june25/7.png", "june25/6.png", "june25/5.png", "june25/4.png"],
+    "silverline": ["june25.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"],
+    "ssMitsu": ["june25.png", "june25/Outlander phev.png", "june25/Outlander.png", "june25/Eclipse Cross.png", "june25/9.png", "june25/8.png", "june25/7.png", "june25/6.png", "june25/5.png", "june25/4.png"],
+    "turnAutoMall": ["june25.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"],
+    "yonkers": ["june25.png", "june25/6.png", "june25/5.png", "june25/4.png", "june25/3.png", "june25/2.png", "june25/1.png"]
+  }
+}
