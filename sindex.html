@@ -44,16 +44,16 @@
           headerThumbs.className = 'thumbs';
           (data.headers[dealer] || []).forEach(file => {
             const a = document.createElement('a');
-            a.href = `headers/${dealer}/${file}`;
+            a.href = file;
             a.target = '_blank';
             const img = document.createElement('img');
-            img.src = `headers/${dealer}/${file}`;
+            img.src = file;
             img.alt = `${dealer} header`;
             a.appendChild(img);
             // Caption
             const caption = document.createElement('div');
             caption.className = 'label';
-            caption.textContent = file;
+            caption.textContent = file.split('/').pop();
             a.appendChild(caption);
             headerThumbs.appendChild(a);
           });
@@ -68,16 +68,16 @@
           bodyThumbs.className = 'thumbs';
           (data.body[dealer] || []).forEach(file => {
             const a = document.createElement('a');
-            a.href = `body/${dealer}/${file}`;
+            a.href = file;
             a.target = '_blank';
             const img = document.createElement('img');
-            img.src = `body/${dealer}/${file}`;
+            img.src = file;
             img.alt = `${dealer} body`;
             a.appendChild(img);
             // Caption
             const caption = document.createElement('div');
             caption.className = 'label';
-            caption.textContent = file;
+            caption.textContent = file.split('/').pop();
             a.appendChild(caption);
             bodyThumbs.appendChild(a);
           });

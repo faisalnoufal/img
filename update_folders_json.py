@@ -1,49 +1,47 @@
 #!/usr/bin/env python3
 import os
 import json
+import sys
 from pathlib import Path
 
-def get_sorted_files(folder_path, exts=None):
+def get_all_files_recursive(folder_path, base_path):
     files = []
-    for entry in os.scandir(folder_path):
-        if entry.is_file():
-            if not exts or any(entry.name.lower().endswith(ext) for ext in exts):
-                files.append(entry.name)
-    # LIFO: newest first (by modification time)
-    files.sort(key=lambda f: os.path.getmtime(os.path.join(folder_path, f)), reverse=True)
+    for root, _, filenames in os.walk(folder_path):
+        for filename in filenames:
+            full_path = Path(root) / filename
+            relative_path = full_path.relative_to(base_path)
+            files.append(str(relative_path))
     return files
 
-def get_body_files(folder_path):
-    files = []
-    # Top-level images
-    files += get_sorted_files(folder_path, exts=['.png', '.jpg', '.jpeg', '.gif'])
-    # Subfolders (e.g., june25, july25)
-    for entry in os.scandir(folder_path):
-        if entry.is_dir():
-            subfolder = entry.name
-            subfolder_path = os.path.join(folder_path, subfolder)
-            for f in get_sorted_files(subfolder_path, exts=['.png', '.jpg', '.jpeg', '.gif']):
-                files.append(f"{subfolder}/{f}")
-    return files
-
-def main():
+def main(campaign_dir):
     base = Path(__file__).parent
-    headers_dir = base / 'headers'
-    body_dir = base / 'body'
+    campaign_path = base / campaign_dir
     result = {'headers': {}, 'body': {}}
-    # Headers
-    for dealer in sorted(os.listdir(headers_dir)):
-        dealer_path = headers_dir / dealer
-        if dealer_path.is_dir():
-            result['headers'][dealer] = get_sorted_files(dealer_path, exts=['.png', '.jpg', '.jpeg', '.gif'])
-    # Body
-    for dealer in sorted(os.listdir(body_dir)):
-        dealer_path = body_dir / dealer
-        if dealer_path.is_dir():
-            result['body'][dealer] = get_body_files(dealer_path)
+
+    if not campaign_path.is_dir():
+        print(f"Error: Directory '{campaign_dir}' not found.")
+        sys.exit(1)
+
+    for dealer_entry in os.scandir(campaign_path):
+        if dealer_entry.is_dir():
+            dealer = dealer_entry.name
+            dealer_path = Path(dealer_entry.path)
+
+            all_files = get_all_files_recursive(dealer_path, base)
+
+            headers = sorted([f for f in all_files if f.lower().endswith('.gif')])
+            body = sorted([f for f in all_files if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
+
+            if headers or body:
+                result['headers'][dealer] = headers
+                result['body'][dealer] = body
+
     with open(base / 'folders.json', 'w') as f:
         json.dump(result, f, indent=2)
-    print('folders.json updated.')
+    print(f'folders.json updated for campaign: {campaign_dir}')
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: python3 update_folders_json.py <campaign_directory>")
+        sys.exit(1)
+    main(sys.argv[1])
