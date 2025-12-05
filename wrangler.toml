@@ -1,4 +1,5 @@
-# This file was used for a previous deployment method with Cloudflare Workers.
-# It is no longer needed.
-# For deploying to Cloudflare Pages, please use the command:
-# npx wrangler pages deploy .
+name = "img-gallery"
+compatibility_date = "2025-12-06"
+
+[assets]
+directory = "."
