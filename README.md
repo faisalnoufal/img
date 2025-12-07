@@ -68,7 +68,7 @@ This project is configured for deployment to [Cloudflare Pages](https://pages.cl
 To deploy the website, run the following command from the project directory:
 
 ```bash
-npx wrangler deploy
+npx wrangler pages publish .
 ```
 
 This will publish your website to the URL associated with your Cloudflare Pages project.
